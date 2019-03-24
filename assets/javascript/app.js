@@ -1,15 +1,3 @@
-var questionArr = [
-    question1,
-    question2,
-    question3,
-    question4,
-    question5,
-    question6,
-    question7,
-    question8,
-    question9,
-    question10
-];
 
 //answers[0] always = true
 var question1 = {
@@ -63,9 +51,11 @@ var question10 = {
     'answers': ['1975','1972','1980','1984']
 }
 
+var questionArr = [question1, question2, question3, question4, question5, question6, question7, question8, question9, question10];
+
 $("#quizStart").click(function() {
     start();
-    
+    displayQuestion();
     
 });
 
@@ -73,6 +63,30 @@ function reset() {
     time = 30;
     $("#questionTimer").text("00:30");
 }
+
+function displayQuestion() {
+    var qAN = 0
+    console.log(questionArr[qAN].question);
+    $("#questionZone").text(questionArr[qAN].question);
+    $("#option1").append("<button id=button1>");
+    $("#option2").append("<button id=button2>");
+    $("#option3").append("<button id=button3>");
+    $("#option4").append("<button id=button4>");
+    
+}
+
+function prepAnswers() {
+
+    for(i=0; i<questionArr.length; i++) {
+        $(questionArr[i].answers[0]).attr("correct-answer", true);
+        $(questionArr[i].answers[1, 2, 3]).attr("correct-answer", false);
+        console.log(questionArr[i].answers[0,1,2,3].attr("correct-answer"));
+        
+    };
+    
+}
+prepAnswers();
+
 
 var intervalId
 var time = 30;
@@ -86,8 +100,6 @@ function start() {
     }
 }
     
-
-
 function stop() {
 
     
