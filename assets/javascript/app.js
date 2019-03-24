@@ -56,7 +56,7 @@ var questionArr = [question1, question2, question3, question4, question5, questi
 $("#quizStart").click(function() {
     start();
     displayQuestion();
-    
+    $("#quizStart").hide();
 });
 
 function reset() {
@@ -64,28 +64,26 @@ function reset() {
     $("#questionTimer").text("00:30");
 }
 
+var qArrN = 0;
+var aArrN = 0;
 function displayQuestion() {
-    var qAN = 0
-    console.log(questionArr[qAN].question);
-    $("#questionZone").text(questionArr[qAN].question);
-    $("#option1").append("<button id=button1>");
-    $("#option2").append("<button id=button2>");
-    $("#option3").append("<button id=button3>");
-    $("#option4").append("<button id=button4>");
-    
+    $("#questionZone").text(questionArr[qArrN].question);
+    $("#answerBtn1").text((questionArr[qArrN].answers[0]))
+    $("#answerBtn2").text((questionArr[qArrN].answers[1]))
+    $("#answerBtn3").text((questionArr[qArrN].answers[2]))
+    $("#answerBtn4").text((questionArr[qArrN].answers[3]))
 }
 
-function prepAnswers() {
 
-    for(i=0; i<questionArr.length; i++) {
-        $(questionArr[i].answers[0]).attr("correct-answer", true);
-        $(questionArr[i].answers[1, 2, 3]).attr("correct-answer", false);
-        console.log(questionArr[i].answers[0,1,2,3].attr("correct-answer"));
+
+    
+    
+    
+
+    
+    
         
-    };
     
-}
-prepAnswers();
 
 
 var intervalId
