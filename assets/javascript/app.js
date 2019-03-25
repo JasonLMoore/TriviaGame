@@ -58,6 +58,7 @@ $("#quizStart").click(function() {
     displayQuestion();
     $("#quizStart").hide();
 });
+    
 
 function reset() {
     time = 30;
@@ -65,25 +66,19 @@ function reset() {
 }
 
 var qArrN = 0;
-var aArrN = 0;
 function displayQuestion() {
     $("#questionZone").text(questionArr[qArrN].question);
     $("#answerBtn1").text((questionArr[qArrN].answers[0]))
     $("#answerBtn2").text((questionArr[qArrN].answers[1]))
     $("#answerBtn3").text((questionArr[qArrN].answers[2]))
     $("#answerBtn4").text((questionArr[qArrN].answers[3]))
+    if (qArrN == 10) {
+        stop();
+        $(".ul").hide();
+        $("#questionZone").text("Correct: " + correct + " Incorrect: " + incorrect);
+    };
 }
 
-
-
-    
-    
-    
-
-    
-    
-        
-    
 
 
 var intervalId
@@ -99,7 +94,7 @@ function start() {
 }
     
 function stop() {
-
+    
     
     clearInterval(intervalId);
     clockRunning = false;
@@ -108,29 +103,81 @@ function stop() {
 var countDown = function() {
     time--;
     var converted = timeConverter(time);
-    console.log(converted);
     $("#questionTimer").text(converted);
+    console.log(time);
 }
 
 function timeConverter(t) {
 
     var minutes = Math.floor(t / 60);
     var seconds = t - (minutes * 60);
-  
+    
     if (seconds < 10) {
-      seconds = "0" + seconds;
+        seconds = "0" + seconds;
     }
   
     if (minutes === 0) {
       minutes = "00";
     }
     else if (minutes < 10) {
-      minutes = "0" + minutes;
+        minutes = "0" + minutes;
     }
-  
+    
     return minutes + ":" + seconds;
 }
 
+var correct = 0;
+var incorrect = 0;
+
+if(time == 0) {
+    incorrect++;
+    qArrN++;
+    displayQuestion();
+    reset();
+    console.log("incorrect", incorrect);
+    console.log("qArrn", qArrN);
+    console.log("correct", correct);
+};
+
+$("#answerBtn1").click(function() {
+    correct++;
+    qArrN++;
+    displayQuestion();
+    reset();
+    console.log("incorrect", incorrect);
+    console.log("qArrn", qArrN);
+    console.log("correct", correct);
+});
+
+$("#answerBtn2").click(function() {
+    incorrect++;
+    qArrN++;
+    displayQuestion();
+    reset();
+    console.log("incorrect", incorrect);
+    console.log("qArrn", qArrN);
+    console.log("correct", correct);
+});
+
+$("#answerBtn3").click(function() {
+    incorrect++;
+    qArrN++;
+    displayQuestion();
+    reset();
+    console.log("incorrect", incorrect);
+    console.log("qArrn", qArrN);
+    console.log("correct", correct);
+});
+
+$("#answerBtn4").click(function() {
+    incorrect++;
+    qArrN++;
+    displayQuestion();
+    reset();
+    console.log("incorrect", incorrect);
+    console.log("qArrn", qArrN);
+    console.log("correct", correct);
+});
 
 
 
@@ -141,5 +188,5 @@ function timeConverter(t) {
 
 
 
-    
+
 
